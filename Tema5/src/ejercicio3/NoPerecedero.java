@@ -5,8 +5,10 @@ package ejercicio3;
  */
 public class NoPerecedero extends Producto {
 
+	@SuppressWarnings("unused")
 	private String tipo;
 
+	
 	/**
 	 * Crea una instancia de NoPerecedero con el nombre, el precio y el tipo
 	 * especificados.
