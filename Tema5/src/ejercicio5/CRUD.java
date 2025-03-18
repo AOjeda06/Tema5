@@ -44,6 +44,7 @@ public class CRUD {
 		System.out.println();
 		for (Poligono elemento : BBDD) {
 			System.out.println(elemento);
+			System.out.println(" Area: " + elemento.area());
 			System.out.println();
 		}
 	}
