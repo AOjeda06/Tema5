@@ -1,10 +1,22 @@
 package interfaces.ej1;
 
+/**
+ * Representa un socio con un ID único, un nombre y una edad. Implementa la
+ * interfaz Comparable para comparar socios en base a su ID.
+ */
 public class Socio implements Comparable<Socio> {
 	private int id;
 	private String nombre;
 	private int edad;
 
+	/**
+	 * Constructor para crear un nuevo socio.
+	 * 
+	 * @param id     El identificador único del socio. Debe ser mayor a 0.
+	 * @param nombre El nombre del socio. No puede estar vacío ni en blanco.
+	 * @param edad   La edad del socio. Debe ser mayor a 0.
+	 * @throws IllegalArgumentException Si alguno de los parámetros no es válido.
+	 */
 	public Socio(int id, String nombre, int edad) {
 		if (id <= 0) {
 			throw new IllegalArgumentException("ID no válido");
@@ -20,11 +32,23 @@ public class Socio implements Comparable<Socio> {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * Devuelve una representación en forma de cadena del socio.
+	 * 
+	 * @return Una cadena que contiene el ID, el nombre y la edad del socio.
+	 */
 	@Override
 	public String toString() {
 		return id + " " + nombre + " " + edad;
 	}
 
+	/**
+	 * Compara este socio con otro socio en base a su ID.
+	 * 
+	 * @param o El otro socio a comparar.
+	 * @return -1 si este socio tiene un ID menor, 1 si tiene un ID mayor, y 0 si
+	 *         los IDs son iguales.
+	 */
 	@Override
 	public int compareTo(Socio o) {
 		int res = 0;
