@@ -1,0 +1,43 @@
+CLASE Vehiculo
+	Atributos:
+		- String marca
+		- String modelo
+		- String color
+		- String matricula
+		- boolean motor
+		- enum MarchaEngranada
+		- int velocidadActualKmH
+	Métodos:
+		+ Getters (todos)
+		+ Contro de Velocidad Adaptativo
+
+CLASE Turismo extends Vehiculo
+	Atributos:
+		- int plazas
+		- enum TipoUso
+	Metodos:
+		+ Getters (todos)
+		
+CLASE Camion extends Vehiculo
+	Atributos: 
+		- double mma
+		- boolean mercanciaPeligrosa
+	Metodos: 
+		+ Getters (todos)
+		
+CLASE Motocicleta extends Vehiculoo
+	Atributos:
+		- int cc
+		- boolean requiereCarnet (if >125)
+	Metodos:
+		+ Getters (todos)
+		
+INTERFAZ Conducir
+	Metodos:
+		+ Parar
+		+ Arrancar 
+		+ Subir Marcha
+		+ Bajar Marcha
+		
+		
+		
