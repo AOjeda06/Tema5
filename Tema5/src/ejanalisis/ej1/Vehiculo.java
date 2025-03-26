@@ -152,90 +152,121 @@ public class Vehiculo implements Conducir {
 
 	/**
 	 * Controla la velocidad adaptativa del vehículo hasta alcanzar una velocidad
-	 * final deseada.
+	 * final deseada, asegurando que el motor se apague y la marcha quede en punto
+	 * muerto si es necesario.
 	 *
 	 * @param velocidadFinal Velocidad objetivo en kilómetros por hora.
 	 */
 	public void controlDeVelocidadAdaptativo(int velocidadFinal) {
 		if (getVelocidadActualKmH() == 0) {
 			arrancar();
+			System.out.println("Motor arrancado. Marcha actual: 0, Velocidad actual: 0 Km/h.");
 		}
-		System.out.println("Marcha actual: " + getMarchaEngranada() + " Velocidad en KmH: " + getVelocidadActualKmH());
-		do {
+
+		System.out.println("Inicializando control adaptativo...");
+		while (getVelocidadActualKmH() != velocidadFinal) {
 			if (velocidadFinal > getVelocidadActualKmH()) {
-				do {
-					cambioDeMarchas(true, false);
-					System.out.println(
-							"Marcha actual: " + getMarchaEngranada() + " Velocidad en KmH: " + getVelocidadActualKmH());
-				} while (velocidadFinal > velocidadActualKmH);
+				cambioDeMarchas(true); // Acelerar
+			} else if (velocidadFinal < getVelocidadActualKmH()) {
+				cambioDeMarchas(false); // Frenar
 			}
-			if (velocidadFinal < getVelocidadActualKmH()) {
-				do {
-					cambioDeMarchas(false, true);
-					System.out.println(
-							"Marcha actual: " + getMarchaEngranada() + " Velocidad en KmH: " + getVelocidadActualKmH());
-				} while (velocidadFinal < velocidadActualKmH);
+
+			System.out.printf("Marcha actual: %d, Velocidad actual: %d Km/h.%n", getMarchaEngranada(),
+					getVelocidadActualKmH());
+
+			// Ajustar velocidad al rango si está en un valor intermedio
+			if (getVelocidadActualKmH() != velocidadFinal) {
+				ajustarVelocidadAlRango(velocidadFinal);
+				System.out.printf("Velocidad ajustada al rango: %d Km/h.%n", getVelocidadActualKmH());
 			}
-		} while (getVelocidadActualKmH() != velocidadFinal);
+		}
+
 		if (getVelocidadActualKmH() == 0) {
+			bajarMarcha(); // Poner la marcha en punto muerto
 			parar();
+			System.out.printf("Motor apagado. Marcha actual: 0, Velocidad actual: %d Km/h.%n", getVelocidadActualKmH());
+		} else {
+			System.out.printf("Velocidad objetivo alcanzada: %d Km/h.%n", getVelocidadActualKmH());
 		}
 	}
 
 	/**
-	 * Realiza cambios de marcha al acelerar o frenar.
+	 * Realiza cambios de marcha al acelerar o frenar. Ajusta la velocidad y la
+	 * marcha engranada en función del rango predefinido para cada marcha.
 	 *
 	 * @param acelerando Indica si se está acelerando.
 	 * @param frenando   Indica si se está frenando.
 	 */
-	private void cambioDeMarchas(boolean acelerando, boolean frenando) {
+	private void cambioDeMarchas(boolean acelerando) {
 		if (acelerando) {
 			switch (marchaEngranada) {
 			case 0 -> {
-				marchaEngranada++;
+				marchaEngranada = 1;
 				velocidadActualKmH = 30;
 			}
 			case 1 -> {
-				marchaEngranada++;
+				marchaEngranada = 2;
 				velocidadActualKmH = 50;
 			}
 			case 2 -> {
-				marchaEngranada++;
+				marchaEngranada = 3;
 				velocidadActualKmH = 70;
 			}
 			case 3 -> {
-				marchaEngranada++;
+				marchaEngranada = 4;
 				velocidadActualKmH = 100;
 			}
 			case 4 -> {
-				marchaEngranada++;
+				marchaEngranada = 5;
 				velocidadActualKmH = 120;
 			}
+			default -> System.out.println("Ya estás en la marcha más alta.");
 			}
 		}
-		if (frenando) {
+
+		if (!acelerando) {
 			switch (marchaEngranada) {
-			case 1 -> {
-				marchaEngranada--;
-				velocidadActualKmH = 0;
-			}
-			case 2 -> {
-				marchaEngranada--;
-				velocidadActualKmH = 30;
-			}
-			case 3 -> {
-				marchaEngranada--;
-				velocidadActualKmH = 50;
-			}
-			case 4 -> {
-				marchaEngranada--;
-				velocidadActualKmH = 70;
-			}
 			case 5 -> {
-				marchaEngranada--;
+				marchaEngranada = 4;
 				velocidadActualKmH = 100;
 			}
+			case 4 -> {
+				marchaEngranada = 3;
+				velocidadActualKmH = 70;
 			}
+			case 3 -> {
+				marchaEngranada = 2;
+				velocidadActualKmH = 50;
+			}
+			case 2 -> {
+				marchaEngranada = 1;
+				velocidadActualKmH = 30;
+			}
+			case 1 -> {
+				marchaEngranada = 0;
+				velocidadActualKmH = 0;
+			}
+			default -> System.out.println("Ya estás en la marcha más baja.");
+			}
+		}
+	}
+
+	/**
+	 * Ajusta la velocidad actual al rango correspondiente en función de la marcha.
+	 *
+	 * @param velocidadFinal Velocidad objetivo en kilómetros por hora.
+	 */
+	private void ajustarVelocidadAlRango(int velocidadFinal) {
+		if (marchaEngranada == 1 && velocidadFinal >= 0 && velocidadFinal <= 30) {
+			velocidadActualKmH = velocidadFinal;
+		} else if (marchaEngranada == 2 && velocidadFinal > 30 && velocidadFinal <= 50) {
+			velocidadActualKmH = velocidadFinal;
+		} else if (marchaEngranada == 3 && velocidadFinal > 50 && velocidadFinal <= 70) {
+			velocidadActualKmH = velocidadFinal;
+		} else if (marchaEngranada == 4 && velocidadFinal > 70 && velocidadFinal <= 100) {
+			velocidadActualKmH = velocidadFinal;
+		} else if (marchaEngranada == 5 && velocidadFinal > 100) {
+			velocidadActualKmH = velocidadFinal;
 		}
 	}
 }

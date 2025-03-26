@@ -1,0 +1,47 @@
+CLASE CuentaBancaria:
+	Atributos:
+		- int numeroCuenta
+		- double saldo
+		- String[3] Titulares (UNA COLECCION DE 3 MÁX 1 MÍNIMO)
+	Metodos:
+		+ ingresar
+		+ retirar
+		+ añadir titular
+		+ eimininar titular
+		+ Getters (y get titulares hace syso de los titulares)
+
+CLASE TITULAR:
+	Atributos:
+		- String dni
+		- String nombre
+		- String apellidos
+		- int telefono
+		
+CLASE CuentaAhorro extends CuentaBancaria:
+	Atributos:
+		- double cuotaMantenimiento
+		- double interesAnual
+	Metodos:
+		+ saldoConInterés
+		+ saldoReal (-cuota)
+
+CLASE CuentaCorriente extends CuentaBancaria:
+	Atributos: 
+		- double cuotaTransaccion
+		- int numeroTransacciones
+		- ArrayList<Transaccion> transacciones
+	Metodos:
+		+ transferencia (pasar dinero a otra cuenta, restandoselo a esta)
+		+ domiciliacion
+		
+CLASE Transaccion:
+	Atributos:
+		- int dia
+		- int mes
+		- int año
+		- String concepto
+		- double importe
+		
+		
+		
+		

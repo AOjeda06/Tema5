@@ -1,0 +1,38 @@
+CLASE abstracta Ficha:
+	Atributos:
+		- int id
+		- String titulo
+	Metodos: 
+		+ prestar (abstracto)
+		+ Getters
+
+CLASE Libro extends Ficha:
+	Atributos:
+		- String autor
+		- String editorial
+	Metodos:
+		+ Getters
+		+ prestar
+		
+CLASE DVD extends Ficha:
+	Atributos:
+		- String director
+		- int año
+		- enum tipo (pelicula, documental, serie)
+	Metodos:
+		+ Getters
+		+ prestar
+		
+CLASE Revista extends Ficha:
+	Atributos:
+		- int numero
+		- int año
+	Metodos:
+		+ Getters
+		+ prestar
+		
+		
+		
+		
+		
+		
