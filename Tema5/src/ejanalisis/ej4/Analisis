@@ -1,0 +1,20 @@
+CLASE Contacto:
+	ATRIBUTOS:
+		- String nombre
+		- int telefono
+	METODOS:
+		+ equals (nombre)
+		+ hash (nombre)
+		+ Getters (todos)
+
+CLASE ContactoPersona extends Contacto:
+	ATRIBUTOS: 
+		- String fechaCumpleaños
+	METODOS:
+		+ Getters (todos)
+	
+CLASE ContacoEmpresa extends Contacto:
+	ATRIBUTOS:
+		- String urlWeb
+	METODOS:
+		+ Getters (todos)
