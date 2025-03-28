@@ -10,6 +10,8 @@ CLASE Vehiculo
 	Métodos:
 		+ Getters (todos)
 		+ Contro de Velocidad Adaptativo
+		+ Cambio de marchas
+		+ Ajustar al rango de velocidad
 
 CLASE Turismo extends Vehiculo
 	Atributos:

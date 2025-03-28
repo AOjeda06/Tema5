@@ -16,6 +16,10 @@ CLASE TITULAR:
 		- String nombre
 		- String apellidos
 		- int telefono
+	Metodos: 
+		+ toString
+		+ equals
+		+ hash
 		
 CLASE CuentaAhorro extends CuentaBancaria:
 	Atributos:
@@ -28,11 +32,11 @@ CLASE CuentaAhorro extends CuentaBancaria:
 CLASE CuentaCorriente extends CuentaBancaria:
 	Atributos: 
 		- double cuotaTransaccion
-		- int numeroTransacciones
 		- ArrayList<Transaccion> transacciones
 	Metodos:
 		+ transferencia (pasar dinero a otra cuenta, restandoselo a esta)
 		+ domiciliacion
+		+ get transaciones.size
 		
 CLASE Transaccion:
 	Atributos:
@@ -41,6 +45,8 @@ CLASE Transaccion:
 		- int año
 		- String concepto
 		- double importe
+	Metodos:
+		+ toString
 		
 		
 		
