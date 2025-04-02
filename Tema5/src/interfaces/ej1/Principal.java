@@ -1,6 +1,7 @@
 package interfaces.ej1;
 
 import java.util.Scanner;
+import java.util.Collections;
 
 /**
  * Clase principal para la gestión de socios. Proporciona un menú interactivo
@@ -22,14 +23,18 @@ public class Principal {
 
 		do {
 			System.out.println("1. Introducir Socio");
-			System.out.println("2. Imprimir BBDD");
+			System.out.println("2. Imprimir BBDD por ID");
+			System.out.println("3. Imprimir BBDD por Nombre");
+			System.out.println("4. Imprimir BBDD por Edad");
 			System.out.println("0. Salir");
 			menu = scanner.nextInt();
 			scanner.nextLine();
 
 			switch (menu) {
 			case 1 -> nuevoSocio();
-			case 2 -> imprimirSocios();
+			case 2 -> imprimirPorId();
+			case 3 -> imprimirPorNombre();
+			case 4 -> imprimirPorEdad();
 			}
 		} while (menu != 0);
 	}
@@ -65,10 +70,29 @@ public class Principal {
 	}
 
 	/**
-	 * Imprime la base de datos de socios en la consola.
+	 * Imprime los socios ordenados por su ID (orden natural).
 	 */
-	public static void imprimirSocios() {
+	public static void imprimirPorId() {
+		Collections.sort(CRUD.BBDD);
+		System.out.println("Socios ordenados por ID:");
 		CRUD.imprimirBBDD();
 	}
 
+	/**
+	 * Imprime los socios ordenados por nombre (alfabético).
+	 */
+	public static void imprimirPorNombre() {
+		Collections.sort(CRUD.BBDD, new ComparadorPorNombre());
+		System.out.println("Socios ordenados por Nombre:");
+		CRUD.imprimirBBDD();
+	}
+
+	/**
+	 * Imprime los socios ordenados por edad (de mayor a menor).
+	 */
+	public static void imprimirPorEdad() {
+		Collections.sort(CRUD.BBDD, new ComparadorPorEdad());
+		System.out.println("Socios ordenados por Edad:");
+		CRUD.imprimirBBDD();
+	}
 }

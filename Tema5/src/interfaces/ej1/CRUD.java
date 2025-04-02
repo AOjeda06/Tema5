@@ -1,7 +1,6 @@
 package interfaces.ej1;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Clase que gestiona la base de datos de socios y proporciona métodos para
@@ -26,7 +25,6 @@ public class CRUD {
 	 * socios se ordenan previamente por su ID.
 	 */
 	public static void imprimirBBDD() {
-		Collections.sort(BBDD);
 		for (Socio elemento : BBDD) {
 			System.out.println(elemento);
 			System.out.println();

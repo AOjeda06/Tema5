@@ -15,11 +15,24 @@ public class Main {
 		futbolistas.add(new Futbolista(8, "Kylian Mbappé", 24, 200));
 		futbolistas.add(new Futbolista(11, "Neymar Jr.", 31, 400));
 
-		// Ordenar los futbolistas usando el método compareTo
+		// Ordenar los futbolistas usando el método compareTo (por número de camiseta y
+		// nombre)
 		Collections.sort(futbolistas);
+		System.out.println("Futbolistas ordenados por número de camiseta y nombre:");
+		for (Futbolista futbolista : futbolistas) {
+			System.out.println(futbolista);
+		}
 
-		// Mostrar los futbolistas ordenados
-		System.out.println("Futbolistas ordenados:");
+		// Ordenar los futbolistas por edad de forma ascendente
+		Collections.sort(futbolistas, new ComparadorPorEdad());
+		System.out.println("\nFutbolistas ordenados por edad (ascendente):");
+		for (Futbolista futbolista : futbolistas) {
+			System.out.println(futbolista);
+		}
+
+		// Ordenar los futbolistas por número de goles de mayor a menor
+		Collections.sort(futbolistas, new ComparadorPorGoles());
+		System.out.println("\nFutbolistas ordenados por número de goles (de mayor a menor):");
 		for (Futbolista futbolista : futbolistas) {
 			System.out.println(futbolista);
 		}

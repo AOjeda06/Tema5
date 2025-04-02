@@ -33,6 +33,33 @@ public class Socio implements Comparable<Socio> {
 	}
 
 	/**
+	 * Devuelve el identificador único del socio.
+	 * 
+	 * @return El ID del socio.
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * Devuelve el nombre del socio.
+	 * 
+	 * @return El nombre del socio.
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * Devuelve la edad del socio.
+	 * 
+	 * @return La edad del socio.
+	 */
+	public int getEdad() {
+		return edad;
+	}
+
+	/**
 	 * Devuelve una representación en forma de cadena del socio.
 	 * 
 	 * @return Una cadena que contiene el ID, el nombre y la edad del socio.
@@ -62,5 +89,4 @@ public class Socio implements Comparable<Socio> {
 
 		return res;
 	}
-
 }

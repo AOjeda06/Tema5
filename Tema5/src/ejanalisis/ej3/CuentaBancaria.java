@@ -4,9 +4,11 @@ import java.util.HashSet;
 
 /**
  * Representa una cuenta bancaria con un número de cuenta, saldo y titulares
- * asociados.
+ * asociados. Implementa la interfaz Comparable para permitir el orden por
+ * número de cuenta en orden ascendente.
  */
-public class CuentaBancaria {
+public class CuentaBancaria implements Comparable<CuentaBancaria> {
+
 	/**
 	 * El número único de la cuenta bancaria.
 	 */
@@ -107,5 +109,17 @@ public class CuentaBancaria {
 	 */
 	public boolean eliminarTitular(Titular borrarTitular) {
 		return titulares.remove(borrarTitular);
+	}
+
+	/**
+	 * Compara esta cuenta bancaria con otra en base al número de cuenta.
+	 *
+	 * @param otraCuenta La otra cuenta bancaria a comparar.
+	 * @return Un valor negativo, cero o positivo según el orden ascendente por
+	 *         número de cuenta.
+	 */
+	@Override
+	public int compareTo(CuentaBancaria otraCuenta) {
+		return Integer.compare(this.numeroCuenta, otraCuenta.numeroCuenta);
 	}
 }

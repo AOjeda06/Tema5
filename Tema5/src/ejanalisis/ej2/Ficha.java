@@ -5,7 +5,8 @@ package ejanalisis.ej2;
  * abstracta y define un método abstracto que debe ser implementado por las
  * subclases.
  */
-public abstract class Ficha {
+public abstract class Ficha implements Comparable<Ficha> {
+
 	/**
 	 * Identificador único de la ficha.
 	 */
@@ -51,4 +52,16 @@ public abstract class Ficha {
 	 * subclases concretas.
 	 */
 	public abstract void prestar();
+
+	/**
+	 * Compara esta ficha con otra en base al identificador.
+	 * 
+	 * @param otraFicha La otra ficha a comparar.
+	 * @return Un valor negativo, cero o positivo según el orden ascendente por
+	 *         identificador.
+	 */
+	@Override
+	public int compareTo(Ficha otraFicha) {
+		return Integer.compare(this.id, otraFicha.id);
+	}
 }

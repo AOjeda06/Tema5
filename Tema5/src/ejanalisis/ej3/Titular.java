@@ -3,9 +3,11 @@ package ejanalisis.ej3;
 import java.util.Objects;
 
 /**
- * Representa a un titular de una cuenta bancaria.
+ * Representa a un titular de una cuenta bancaria. Implementa la interfaz
+ * Comparable para ordenar por defecto los titulares por DNI en orden
+ * ascendente.
  */
-public class Titular {
+public class Titular implements Comparable<Titular> {
 	/**
 	 * DNI del titular, usado como identificador único.
 	 */
@@ -43,6 +45,42 @@ public class Titular {
 	}
 
 	/**
+	 * Obtiene el DNI del titular.
+	 *
+	 * @return El DNI del titular.
+	 */
+	public String getDni() {
+		return dni;
+	}
+
+	/**
+	 * Obtiene el nombre del titular.
+	 *
+	 * @return El nombre del titular.
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * Obtiene los apellidos del titular.
+	 *
+	 * @return Los apellidos del titular.
+	 */
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	/**
+	 * Obtiene el número de teléfono del titular.
+	 *
+	 * @return El número de teléfono del titular.
+	 */
+	public int getTelefono() {
+		return telefono;
+	}
+
+	/**
 	 * Representación en forma de cadena de los datos del titular.
 	 *
 	 * @return Una cadena con el DNI, nombre, apellidos y teléfono.
@@ -63,7 +101,7 @@ public class Titular {
 	}
 
 	/**
-	 * Compara este titular con otro objeto para verificar igualdad.
+	 * Compara este titular con otro para verificar igualdad.
 	 *
 	 * @param obj El objeto con el que se comparará este titular.
 	 * @return true si los DNIs son iguales, false en caso contrario.
@@ -78,5 +116,16 @@ public class Titular {
 			return false;
 		Titular other = (Titular) obj;
 		return Objects.equals(dni, other.dni);
+	}
+
+	/**
+	 * Compara este titular con otro basado en el DNI en orden ascendente.
+	 *
+	 * @param otroTitular El otro titular a comparar.
+	 * @return Un valor negativo, cero o positivo según el orden por DNI.
+	 */
+	@Override
+	public int compareTo(Titular otroTitular) {
+		return this.dni.compareTo(otroTitular.dni);
 	}
 }
