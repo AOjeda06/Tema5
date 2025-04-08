@@ -35,9 +35,22 @@ public class Titular implements Comparable<Titular> {
 	 * @param nombre    El nombre del titular.
 	 * @param apellidos Los apellidos del titular.
 	 * @param telefono  El número de teléfono del titular.
+	 * 
+	 * @throws InvalidIdException   Si el DNI introducido no es válido se lanzará
+	 *                              una excepción
+	 * @throws InvalidNameException Si el nombre introducido no es válido se
+	 *                              lanzarça una excepción
 	 */
-	public Titular(String dni, String nombre, String apellidos, int telefono) {
+	public Titular(String dni, String nombre, String apellidos, int telefono)
+			throws InvalidIdException, InvalidNameException {
 		super();
+		if (dni.isBlank() || dni.isEmpty() || dni.length() != 9) {
+			throw new InvalidIdException();
+		}
+		if (nombre.isBlank() || nombre.isEmpty()) {
+			throw new InvalidNameException();
+		}
+
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;

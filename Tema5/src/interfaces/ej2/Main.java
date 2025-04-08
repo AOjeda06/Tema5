@@ -23,15 +23,17 @@ public class Main {
 			System.out.println(futbolista);
 		}
 
-		// Ordenar los futbolistas por edad de forma ascendente
-		Collections.sort(futbolistas, new ComparadorPorEdad());
+		// Ordenar los futbolistas por edad de forma ascendente usando una expresión
+		// lambda
+		Collections.sort(futbolistas, (f1, f2) -> Integer.compare(f1.getEdad(), f2.getEdad()));
 		System.out.println("\nFutbolistas ordenados por edad (ascendente):");
 		for (Futbolista futbolista : futbolistas) {
 			System.out.println(futbolista);
 		}
 
-		// Ordenar los futbolistas por número de goles de mayor a menor
-		Collections.sort(futbolistas, new ComparadorPorGoles());
+		// Ordenar los futbolistas por número de goles de mayor a menor usando una
+		// expresión lambda
+		Collections.sort(futbolistas, (f1, f2) -> Integer.compare(f2.getNumeroGoles(), f1.getNumeroGoles()));
 		System.out.println("\nFutbolistas ordenados por número de goles (de mayor a menor):");
 		for (Futbolista futbolista : futbolistas) {
 			System.out.println(futbolista);

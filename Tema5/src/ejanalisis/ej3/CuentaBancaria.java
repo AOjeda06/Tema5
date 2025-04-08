@@ -31,8 +31,16 @@ public class CuentaBancaria implements Comparable<CuentaBancaria> {
 	 * @param numeroCuenta El número único de la cuenta bancaria.
 	 * @param saldo        El saldo inicial de la cuenta.
 	 * @param titular      El titular principal de la cuenta.
+	 * 
+	 * @throws InvalidBalanceException Si el saldo introducido es negativo, se
+	 *                                 lanzará una excepción
 	 */
-	public CuentaBancaria(int numeroCuenta, double saldo, Titular titular) {
+	public CuentaBancaria(int numeroCuenta, double saldo, Titular titular) throws InvalidBalanceException {
+
+		if (saldo < 0) {
+			throw new InvalidBalanceException();
+		}
+
 		this.numeroCuenta = numeroCuenta;
 		this.saldo = saldo;
 		this.titulares.add(titular);

@@ -3,21 +3,10 @@ package interfaces.ej1;
 import java.util.Scanner;
 import java.util.Collections;
 
-/**
- * Clase principal para la gestión de socios. Proporciona un menú interactivo
- * para introducir y mostrar socios en la base de datos.
- */
 public class Principal {
 
-	/** Escáner para la entrada de datos por consola. */
 	static Scanner scanner = new Scanner(System.in);
 
-	/**
-	 * Método principal que ejecuta el programa. Presenta un menú al usuario para
-	 * gestionar la base de datos de socios.
-	 * 
-	 * @param args Argumentos de línea de comandos (no utilizados).
-	 */
 	public static void main(String[] args) {
 		int menu;
 
@@ -39,10 +28,6 @@ public class Principal {
 		} while (menu != 0);
 	}
 
-	/**
-	 * Solicita al usuario los datos de un nuevo socio y lo agrega a la base de
-	 * datos. Valida los datos introducidos y maneja posibles excepciones.
-	 */
 	public static void nuevoSocio() {
 		int id;
 		String nombre;
@@ -69,29 +54,22 @@ public class Principal {
 		}
 	}
 
-	/**
-	 * Imprime los socios ordenados por su ID (orden natural).
-	 */
 	public static void imprimirPorId() {
 		Collections.sort(CRUD.BBDD);
 		System.out.println("Socios ordenados por ID:");
 		CRUD.imprimirBBDD();
 	}
 
-	/**
-	 * Imprime los socios ordenados por nombre (alfabético).
-	 */
 	public static void imprimirPorNombre() {
-		Collections.sort(CRUD.BBDD, new ComparadorPorNombre());
+		// Usar expresión lambda para ordenar por nombre alfabéticamente
+		Collections.sort(CRUD.BBDD, (s1, s2) -> s1.getNombre().compareTo(s2.getNombre()));
 		System.out.println("Socios ordenados por Nombre:");
 		CRUD.imprimirBBDD();
 	}
 
-	/**
-	 * Imprime los socios ordenados por edad (de mayor a menor).
-	 */
 	public static void imprimirPorEdad() {
-		Collections.sort(CRUD.BBDD, new ComparadorPorEdad());
+		// Usar expresión lambda para ordenar por edad de mayor a menor
+		Collections.sort(CRUD.BBDD, (s1, s2) -> Integer.compare(s2.getEdad(), s1.getEdad()));
 		System.out.println("Socios ordenados por Edad:");
 		CRUD.imprimirBBDD();
 	}

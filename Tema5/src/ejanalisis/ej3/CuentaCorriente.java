@@ -26,8 +26,10 @@ public class CuentaCorriente extends CuentaBancaria {
 	 * @param saldo            El saldo inicial de la cuenta.
 	 * @param titular          El titular principal de la cuenta.
 	 * @param cuotaTransaccion La cuota aplicada por cada transacción.
+	 * @throws InvalidBalanceException
 	 */
-	public CuentaCorriente(int numeroCuenta, double saldo, Titular titular, double cuotaTransaccion) {
+	public CuentaCorriente(int numeroCuenta, double saldo, Titular titular, double cuotaTransaccion)
+			throws InvalidBalanceException {
 		super(numeroCuenta, saldo, titular);
 		this.cuotaTransaccion = cuotaTransaccion;
 	}

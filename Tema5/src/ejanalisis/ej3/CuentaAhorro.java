@@ -25,11 +25,12 @@ public class CuentaAhorro extends CuentaBancaria {
 	 * @param titular            El titular principal de la cuenta.
 	 * @param cuotaMantenimiento La cuota de mantenimiento de la cuenta.
 	 * @param interesAnual       El porcentaje de interés anual.
+	 * @throws InvalidBalanceException
 	 * @throws IllegalArgumentException Si la cuota de mantenimiento o el interés
 	 *                                  anual son negativos.
 	 */
 	public CuentaAhorro(int numeroCuenta, double saldo, Titular titular, double cuotaMantenimiento,
-			double interesAnual) {
+			double interesAnual) throws InvalidBalanceException {
 		super(numeroCuenta, saldo, titular);
 
 		if (cuotaMantenimiento < 0 || interesAnual < 0) {

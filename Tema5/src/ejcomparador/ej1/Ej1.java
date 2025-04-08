@@ -20,8 +20,8 @@ public class Ej1 {
 		System.out.println("Números originales:");
 		System.out.println(numeros);
 
-		// Ordenar los números en sentido decreciente usando el comparador
-		Collections.sort(numeros, new ComparadorDecreciente());
+		// Ordenar los números en sentido decreciente usando una expresión lambda
+		Collections.sort(numeros, (n1, n2) -> n2 - n1);
 
 		// Imprimir los números ordenados
 		System.out.println("Números ordenados en sentido decreciente:");
