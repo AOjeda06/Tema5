@@ -1,0 +1,72 @@
+Class MandoADistancia implements Comparable<MandoADistancia>{
+	Atributos:
+		- String modelo
+		- double anchoCm
+		- double altoCm
+		- double precio
+		- boolean encendido
+	Metodos:
+		+ encender()
+		+ apagar()
+		+ Getters (todos)
+		+ setPrecio()
+		+ equals(modelo)
+		+ compareTo() -> ordenar alfabeticamente
+		+ toString() -> toda la info del objeto
+}
+
+Class MandoTV extends MandoADistancia implements ModificarVolumen {
+	Atributos:
+		- int volumen
+		- int canal
+	Metodos:
+		+ METODOS DE LA INTERFAZ (+- 10)
+		+ setCanal()
+		+ Getters (todos)
+		@Override:
+		+ toString() -> toda la info del objeto
+}
+
+Class MandoMinicadena extends MandoADistancia implements ModificarVolumen {
+	Atributos:
+		- int volumen
+	Metodos:
+		+ METODOS DE LA INTERFAZ (+-5)
+		+ Getters (todos)
+		@Override:
+		+ toString() -> toda la info del objeto
+}
+
+Class MandoAspiradora extends MandoADistancia implements ModificarVelocidad {
+	Atributos:
+		- int velocidad = 0 (hasta 3)
+	Metodos:
+		+ METODOS DE LA INTERFAZ (+-1)
+		+ Getters (todos)
+		@Override:
+		+ toString() -> toda la info del objeto
+}
+
+Class MandoAC extends MandoADistancia implements ModificarVelocidad {
+	Atributos:
+		- enum modo = FRIO ( ó CALOR)
+		- double temperatura
+		- int velocidad = 0 (hasta 5)
+	Metodos: 
+		+ METODOS DE LA INTERFAZ (+-1)
+		+ setTemperatura
+		+ Getters (todos)
+		+ setModo()
+		@Override:
+		+ toString() -> toda la info del objeto
+}
+
+Interface ModificarVolumen {
+	+ subirVolumen()
+	+ bajarVolumen()
+}
+
+Interface ModificarVelocidad {
+	+ subirVelocidad()
+	+ bajarVelocidad()
+}
